@@ -1,3 +1,11 @@
+'use strict'
+const path = require('path')
+const config = require('./src/config')
+
+function resolve(dir) {
+  return path.join(__dirname, dir)
+}
+
 module.exports = {
   "publicPath": "/",
   "outputDir": "dist",
@@ -13,10 +21,10 @@ module.exports = {
     }
   },
   "configureWebpack": {
-    "name": "山西省审计厅档案综合管理系统",
+    "name": config.webName,
     "resolve": {
       "alias": {
-        "@": "D:\\Vue_Frame\\src"
+        "@": resolve('src')
       }
     }
   },
