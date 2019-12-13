@@ -11,15 +11,25 @@ const vuetify = new Vuetify({
   theme: {
     themes: {
       light: {
-        primary: '#021132',
-        secondary: colors.grey.darken1,
-        accent: colors.shades.black,
-        error: colors.red.accent3,
+        primary: '#3f51b5',
+        secondary: '#03a9f4',
+        accent: '#00bcd4',
+        error: '#f44336',
+        warning: '#ffeb3b',
+        info: '#607d8b',
+        success: '#4caf50'
       },
       dark: {
-        primary: colors.blue.lighten3,
+        primary: '#3f51b5',
+        secondary: '#03a9f4',
+        accent: '#00bcd4',
+        error: '#f44336',
+        warning: '#ffeb3b',
+        info: '#607d8b',
+        success: '#4caf50'
       },
     },
+    isDark: true
   },
 })
 

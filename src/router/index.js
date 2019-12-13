@@ -7,8 +7,15 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    name: 'Layout',
-    component: Layout
+    component: Layout,
+    redirect: 'dashboard',
+    children: [
+      {
+        path: '/dashboard',
+        name: 'dashboard',
+        component: () => import('@/views/dashboard')
+      }
+    ]
   },
   {
     path: '/about',
@@ -22,6 +29,11 @@ const routes = [
     path: '/login',
     name: 'login',
     component: () => import('@/views/login')
+  },
+  {
+    path: '/approval',
+    name: 'Approval',
+    component: () => import('@/views/dashboard/components/Approval')
   }
 ]
 
