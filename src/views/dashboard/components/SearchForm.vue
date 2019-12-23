@@ -17,14 +17,14 @@
         <v-col cols="10">
           <v-row no-gutters class="boxs">
             <v-col cols="2">
-              <v-select v-model="select" :items="items" filled label="Filled style"></v-select>
+              <v-select v-model="select" :items="items" filled label></v-select>
             </v-col>
             <v-col cols="8"></v-col>
             <v-col cols="2"></v-col>
           </v-row>
         </v-col>
         <v-col cols="2">
-          <v-btn text="true">高级检索</v-btn>
+          <v-btn :text="true">高级检索</v-btn>
         </v-col>
       </v-row>
 

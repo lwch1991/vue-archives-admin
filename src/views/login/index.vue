@@ -1,90 +1,73 @@
 <template>
-  <v-app id="inspire">
-    <v-content>
-      <v-container
-        class="fill-height"
-        fluid
+  <div class="app">
+    <v-card class="mx-auto" max-width="400">
+      <v-img
+        class="white--text"
+        height="200px"
+        src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
       >
-        <v-row
-          align="center"
-          justify="center"
-        >
-          <v-col
-            cols="12"
-            sm="8"
-            md="4"
-          >
-            <v-card class="elevation-12">
-              <v-toolbar
-                color="primary"
-                dark
-                flat
-              >
-                <v-toolbar-title>Login form</v-toolbar-title>
-                <v-spacer />
-                <v-tooltip bottom>
-                  <template v-slot:activator="{ on }">
-                    <v-btn
-                      :href="source"
-                      icon
-                      large
-                      target="_blank"
-                      v-on="on"
-                    >
-                      <v-icon>mdi-code-tags</v-icon>
-                    </v-btn>
-                  </template>
-                  <span>Source</span>
-                </v-tooltip>
-                <v-tooltip right>
-                  <template v-slot:activator="{ on }">
-                    <v-btn
-                      icon
-                      large
-                      href="https://codepen.io/johnjleider/pen/pMvGQO"
-                      target="_blank"
-                      v-on="on"
-                    >
-                      <v-icon>mdi-codepen</v-icon>
-                    </v-btn>
-                  </template>
-                  <span>Codepen</span>
-                </v-tooltip>
-              </v-toolbar>
-              <v-card-text>
-                <v-form>
-                  <v-text-field
-                    label="Login"
-                    name="login"
-                    prepend-icon="person"
-                    type="text"
-                  />
+        <v-card-title class="align-end fill-height">需要一句非主流的话</v-card-title>
+      </v-img>
 
-                  <v-text-field
-                    id="password"
-                    label="Password"
-                    name="password"
-                    prepend-icon="lock"
-                    type="password"
-                  />
-                </v-form>
-              </v-card-text>
-              <v-card-actions>
-                <v-spacer />
-                <v-btn color="primary">Login</v-btn>
-              </v-card-actions>
-            </v-card>
-          </v-col>
-        </v-row>
-      </v-container>
-    </v-content>
-  </v-app>
+      <v-card-text>
+        <v-form ref="form" v-model="valid" :lazy-validation="lazy">
+          <v-text-field v-model="username" :counter="10" :rules="nameRules" label="帐户名" required></v-text-field>
+          <v-text-field
+            v-model="password"
+            :rules="passwordRules"
+            label="密码"
+            required
+            type="password"
+          ></v-text-field>
+        </v-form>
+      </v-card-text>
+
+      <v-card-actions>
+        <v-btn @click="login" color="primary" class="loginBtn">登录</v-btn>
+      </v-card-actions>
+    </v-card>
+  </div>
 </template>
 
 <script>
-  export default {
-    props: {
-      source: String,
-    },
+export default {
+  data() {
+    return {
+      valid: true,
+      lazy: false,
+      nameRules: [v => !!v || '请输入用户名'],
+      passwordRules: [v => !!v || '请输入密码'],
+      username: 'admin', // 用户名
+      password: '123456' // 密码
+    }
+  },
+  methods: {
+    // 登录
+    async login() {
+      if (this.$refs.form.validate()) {
+        const form = {
+          username: this.username,
+          password: this.password
+        }
+        // await this.$store.dispatch('user/login', form)
+        this.$router.push({
+          path: '/'
+        })
+      }
+    }
   }
+}
 </script>
+<style lang="scss" scoped>
+.app {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .loginBtn {
+    width: 80%;
+    margin: 0 auto 20px;
+  }
+}
+</style>

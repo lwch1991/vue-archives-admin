@@ -1,9 +1,9 @@
 <template>
   <div class="approval-container">
     <v-tabs>
-      <v-tab v-for="i in tabs" :key="i" :href="i.name">{{i.title}}</v-tab>
-
-      <v-tab-item v-for="i in tabs" :key="i" :value="i.name">
+      <!-- :href="i.name" -->
+      <v-tab v-for="(tab,i) in tabs" :key="i" :tag="tab.name">{{tab.title}}</v-tab>
+      <v-tab-item v-for="(tab,i) in tabs" :key="i" :value="tab.name">
         <v-card>
           <v-simple-table>
             <template v-slot:default>
